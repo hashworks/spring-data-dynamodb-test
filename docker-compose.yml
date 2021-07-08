@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  dynamodb:
+    image: docker.lej.eis.network/amazon/dynamodb-local:latest
+    restart: unless-stopped
+    command: -jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/
+    volumes:
+      - dynamodb_data:/home/dynamodblocal/data
+    ports:
+      - 127.0.0.1:8000:8000
+      - 172.17.0.1:8000:8000
+
+volumes:
+  dynamodb_data:
